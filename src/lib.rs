@@ -448,7 +448,15 @@ pub type AudioUnitParameterOptions = UInt32;
 pub struct AudioUnitParameterInfo {
     /// Deprecated legacy C-string name (set to all-zeros).
     pub name: [c_char; 52],
-    /// Valid when `kAudioUnitParameterFlag_HasCFNameString` is set.
+    // 4 bytes implicit padding here (arm64 aligns pointers to 8 bytes)
+    /// Custom unit name string; only valid when `unit == kAudioUnitParameterUnit_CustomUnit`.
+    /// Set to `NULL` unless using a custom unit.
+    pub unitName: CFStringRef,
+    /// Optional grouping ID (0 = no group).
+    pub clumpID: UInt32,
+    // 4 bytes implicit padding here
+    /// Human-readable CFString name; only valid when `kAudioUnitParameterFlag_HasCFNameString` is set.
+    /// Set to `NULL` unless that flag is present.
     pub cfNameString: CFStringRef,
     pub unit: AudioUnitParameterUnit,
     pub minValue: AudioUnitParameterValue,

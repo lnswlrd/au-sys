@@ -1,0 +1,18 @@
+[package]
+name = "au-sys"
+version = "0.1.0"
+edition = "2021"
+description = "Rust FFI bindings for the macOS AudioUnit v2 (AUv2) C API"
+license = "MIT"
+repository = "https://github.com/lnswlrd/au-sys"
+homepage = "https://github.com/lnswlrd/au-sys"
+documentation = "https://docs.rs/au-sys"
+readme = "README.md"
+keywords = ["audio", "audiounit", "au", "macos", "ffi"]
+categories = ["external-ffi-bindings", "multimedia::audio"]
+# macOS-only crate
+exclude = []
+
+[lib]
+
+[target.'cfg(target_os = "macos")'.dependencies]
